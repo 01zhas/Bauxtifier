@@ -1,0 +1,173 @@
+{
+    "13":{
+        "start_cell" : "C4",
+        "num_rows" : "13",
+        "num_cols" : "12",
+        "rows" : {
+            "Боксит" : "tableBoxite13",
+            "Известняк" : "tableLimestone13",
+            "Белый шлам" : "tableWhiteMud13",
+            "Карбонатный шлам" : "tableCarbonMud13",
+            "Кальцинированная сода" : "tableSoda13",
+            "Оборотный раствор" : "tableRecycledSolution13",
+            "Пульпа" : "tablePulp13",
+            "Потери" : "tableNaLosses13"
+        }
+    },
+    "14":{
+        "start_cell" : "C20",
+        "num_rows" : "10",
+        "num_cols" : "12",
+        "rows" : {
+            "Пульпа" : "tablePulp14",
+            "Дробленный спек" : "tableCrushedSpeck14",
+            "Потери при спекании" : "tableSinteringLosses14",
+            "Потери при дроблении " : "tableCrushingLosses14"
+        }
+    },
+    "15":{
+        "start_cell" : "C34",
+        "num_rows" : "13",
+        "num_cols" : "9",
+        "rows" : {
+            "Шлам после 2 стадии" : "tableMud15",
+            "А. р., увлеч. Шламом" : "tableAluminateSolution15",
+            "Содовый раствор " : "tableSoda15",
+            "Карбонатный" : "tableCarbonMud15",
+            "Содощелочной алюминатный раствор " : "tableAlkalineSolution15",
+            "Потери" : "tableLosses15"
+        }
+    },
+    "16":{
+        "start_cell" : "C50",
+        "num_rows" : "12",
+        "num_cols" : "9",
+        "rows" : {
+            "Карбонатный шлам" : "tableCarbonMud16",
+            "Содощелочной алюминатный раствор, увлеченый со шламом" : "tableAlkalineSolution16",
+            "Вода на промывку" : "tableWater16",
+            "Карбонатный шлам на 2 стадию" : "tableCarbonMudStageTwo16",
+            "Карбонатный шлам на приготовление шихты" : "tableCarbonMudCharge16",
+            "Содощелочной алюминатный раствор, увлеченый со шламом1" : "tableAlkalineSolutionFromMud16",
+            "Промвода на регенерацию" : "tablePromwater16"
+        }
+    },
+    "17":{
+        "start_cell" : "C65",
+        "num_rows" : "13",
+        "num_cols" : "9",
+        "rows" : {
+            "Шлам после 2 стадии" : "tableMud17",
+            "Алюминатный раствор" : "tableAluminateSolution17",
+            "Содовый раствор" : "tableSodaSolution17",
+            "Промврда на промывку" : "tablePromwater17",
+            "Карбонатный шлам на 2 стадию" : "tableCarbonMud17",
+            "Содощелочной алюминатный раствор, увлеченый со шламом" : "tableAlkalineSolution17",
+            "Содощелочной алюминатный раствор, на выщелачивание" : "tableAlkalineSolutionLeaching17",
+            "Потери" : "tableLosses17"
+        }
+    },
+    "18":{
+        "start_cell" : "C82",
+        "num_rows" : "11",
+        "num_cols" : "12",
+        "rows" : {
+            "Спек дробленный" : "tableCrushedSpeck18",
+            "Содощелочной раствор" : "tableAlkalineSolution18",
+            "Вода на промывку" : "tableWater18",
+            "Отвальный шлам" : "tableRecycledSolution18",
+            "Промывная вода" : "tablePromwater18",
+            "Алюминатный раствор" : "tableAluminateSolution18"
+        }
+    },
+    "19":{
+        "start_cell" : "C96",
+        "num_rows" : "12",
+        "num_cols" : "10",
+        "rows" : {
+            "Алюминатный раствор после выщелачивания спека" : "tableAluminateSolution19",
+            "Затравка белого шлама" : "tableGrindWhiteMud19",
+            "Алюминатный раствор" : "tableAluminateSolutionWithMud19",
+            "Белый шлам" : "tableWhiteMud19",
+            "Раствор, увлеченный белым шламом" : "tableSolution19",
+            "Потери" : "tableLosses19",
+            "Алюминатный раствор1" : "tableAluminateSolutionStageTwo19"
+        }
+    },
+    "20":{
+        "start_cell" : "C112",
+        "num_rows" : "11",
+        "num_cols" : "10",
+        "rows" : {
+            "Белый шлам" : "tableWhiteMud20",
+            "Раствор, увлеченный белым шламом" : "tableSolution20",
+            "Вода на промывку" : "tableWater20",
+            "Отмытый шлам в ОПШ" : "tableRecycledMud20",
+            "Промвода, увлеченная шламом" : "tablePromwater20"
+        }
+    },
+    "21":{
+        "start_cell" : "C126",
+        "num_rows" : "12",
+        "num_cols" : "9",
+        "rows" : {
+            "Алюминатный раствор с 1 стадии обескремнивания" : "tableAluminateSolutionStageOne21",
+            "Промвода от промывки шлама" : "tablePromwater21",
+            "Карбонатный шлам" : "tableCarbonMud21",
+            "Известковое молоко" : "tableCarbonMilk21",
+            "Гидрогранат" : "tableHydrogranate21",
+            "Алюминатный раствор, увлеченный шламом" : "tableAluminateSolutionMud21",
+            "Алюминатный раствор на карбонизацию" : "tableAluminateSolutionCarbon21"
+        }
+    },
+    "22":{
+        "start_cell" : "C141",
+        "num_rows" : "14",
+        "num_cols" : "9",
+        "rows" : {
+            "Алюминатный раствор на 2 стадии обескремнивания" : "tableAluminateSolutionStageTwo22",
+            "Затравка гидроксида алюминия" : "tableAluminumHydroxide22",
+            "Содовый раствор" : "tableAlkalineSolution22",
+            "Затравка гидроксида алюминия1" : "tableAluminumHydroxideS22",
+            "Содовый раствор1" : "tableAlkalineSolutionS22",
+            "Продукционый гидроксид алюминия" : "tableProdAluminumHydroxide22",
+            "Содовый раствор2" : "tableProdAlkalineSolution22",
+            "Потери" : "tableLosses22"
+        }
+    },
+    "23":{
+        "start_cell" : "C157",
+        "num_rows" : "11",
+        "num_cols" : "9",
+        "rows" : {
+            "Гидроксид алюминия" : "tableAluminumHydroxide23",
+            "Содовый раствор" : "tableAlkalineSolution23",
+            "Вода на промывку" : "tableWater23",
+            "Отмытый гидроксид алюминия" : "tableProdAluminumHydroxide23",
+            "Промвода" : "tablePromwater23",
+            "Промвода на выпарку" : "tablePromwaterS23"
+        }
+    },
+    "24":{
+        "start_cell" : "C171",
+        "num_rows" : "9",
+        "num_cols" : "8",
+        "rows" : {
+            "Гидроксид алюминия" : "tableAluminumHydroxide24",
+            "Промвода" : "tablePromwater24",
+            "Глинозем" : "tableAlumina24",
+            "Потери" : "tableLosses24"
+        }
+    },
+    "26":{
+        "start_cell" : "C197",
+        "num_rows" : "9",
+        "num_cols" : "10",
+        "rows" : {
+            "Содовый раствор" : "tableAlkalineSolution26",
+            "Промвода" : "tablePromwater26",
+            "Оборотный раствор" : "tableRecycledSolution26",
+            "Потери" : "tableLosses26"
+        }
+    }
+}
