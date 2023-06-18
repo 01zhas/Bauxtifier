@@ -1,20 +1,13 @@
-import os
 import json
-import tempfile
 import plotly.io as pio
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QDialogButtonBox, QTableWidgetItem, QVBoxLayout, QLabel, QPushButton, QWidget, QFormLayout, QLineEdit, QCheckBox, QHeaderView, QScrollArea, QSizePolicy, QTableWidget, QGridLayout, QToolBar, QFileDialog, QApplication, QMessageBox, QAction
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QVBoxLayout, QLabel, QWidget, QHeaderView, QScrollArea, QTableWidget, QToolBar, QFileDialog, QApplication, QMessageBox, QAction
 from matplotlib.backends.backend_template import FigureCanvas
 from PyQt5.QtGui import QPixmap, QFont, QIcon
 from PyQt5.QtCore import QStandardPaths
 import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from pycel import ExcelCompiler
 import pandas as pd
-import matplotlib.patheffects as path_effects
 import plotly.graph_objects as go
-from plotly.offline import plot
-from PyQt5.QtWebEngineWidgets import QWebEngineView
 import sys
 import importlib
 import shutil
@@ -161,7 +154,7 @@ class BauxOutputWindow(QMainWindow, ui_class):
         """)
         
         layout.addWidget(label)
-        layout.addWidget(MyTable2())
+        layout.addWidget(MyTable2(self.start_page, self))
         
         df = self.get_koeff()
         
@@ -227,7 +220,7 @@ class BauxOutputWindow(QMainWindow, ui_class):
         """)
         
         layout.addWidget(label)
-        layout.addWidget(MyTable1())
+        layout.addWidget(MyTable1(self.start_page, self))
 
         df = self.get_koeff(["1"])
         
@@ -563,7 +556,9 @@ class BauxOutputWindow(QMainWindow, ui_class):
 
 
 class MyTable2(QTableWidget):
-    def __init__(self, r = 5, c = 3):
+    def __init__(self, start_page, out, r = 5, c = 3):
+        self.out = out
+        self.start_page = start_page
         super().__init__(r, c)
         self.init_ui()
 
@@ -623,22 +618,22 @@ class MyTable2(QTableWidget):
         item.setTextAlignment(Qt.AlignHCenter |  Qt.AlignVCenter)
         self.setItem(2, 2, item)
 
-        item = QTableWidgetItem("87,0")
+        item = QTableWidgetItem(str(self.start_page.settings_window.Extract1.value()))
         item.setFont(font)
         item.setTextAlignment(Qt.AlignHCenter |  Qt.AlignVCenter)
         self.setItem(3, 1, item)
         
-        item = QTableWidgetItem("87,0")
+        item = QTableWidgetItem(str(self.start_page.settings_window.Extract2.value()))
         item.setFont(font)
         item.setTextAlignment(Qt.AlignHCenter |  Qt.AlignVCenter)
         self.setItem(3, 2, item)
 
-        item = QTableWidgetItem("1700")
+        item = QTableWidgetItem(self.out.tableRecycledSolution18.item(0,9).text())
         item.setFont(font)
         item.setTextAlignment(Qt.AlignHCenter |  Qt.AlignVCenter)
         self.setItem(4, 1, item)
         
-        item = QTableWidgetItem("1600")
+        item = QTableWidgetItem(self.out.tableRecycledSolution18_2.item(0,9).text())
         item.setFont(font)
         item.setTextAlignment(Qt.AlignHCenter |  Qt.AlignVCenter)
         self.setItem(4, 2, item)
@@ -646,7 +641,9 @@ class MyTable2(QTableWidget):
         
 from PyQt5.QtCore import Qt
 class MyTable1(QTableWidget):
-    def __init__(self, r = 4, c = 2):
+    def __init__(self, start_page, out, r = 4, c = 2):
+        self.out = out
+        self.start_page = start_page
         super().__init__(r, c)
         self.init_ui()
 
@@ -688,13 +685,12 @@ class MyTable1(QTableWidget):
         item.setFont(font)
         item.setTextAlignment(Qt.AlignHCenter |  Qt.AlignVCenter)
         self.setItem(1, 1, item)
-        
-        item = QTableWidgetItem("87,0")
+        item = QTableWidgetItem(str(self.start_page.settings_window.Extract1.value()))
         item.setFont(font)
         item.setTextAlignment(Qt.AlignHCenter |  Qt.AlignVCenter)
         self.setItem(2, 1, item)
 
-        item = QTableWidgetItem("1700")
+        item = QTableWidgetItem(self.out.tableRecycledSolution18.item(0,9).text())
         item.setFont(font)
         item.setTextAlignment(Qt.AlignHCenter |  Qt.AlignVCenter)
         self.setItem(3, 1, item)

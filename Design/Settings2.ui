@@ -71,9 +71,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-267</y>
+            <y>-439</y>
             <width>450</width>
-            <height>954</height>
+            <height>948</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -92,7 +92,7 @@
               <item row="0" column="2">
                <layout class="QVBoxLayout" name="verticalLayout_12">
                 <item>
-                 <widget class="QDoubleSpinBox" name="ChargeHumidity">
+                 <widget class="QDoubleSpinBox" name="ChargeHumidity1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -105,7 +105,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="HumidityWhiteMud">
+                 <widget class="QDoubleSpinBox" name="HumidityWhiteMud1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -118,7 +118,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="HumidityAluminumHydroxide">
+                 <widget class="QDoubleSpinBox" name="HumidityAluminumHydroxide1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -131,7 +131,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="HumidityDumpMud">
+                 <widget class="QDoubleSpinBox" name="HumidityDumpMud1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -242,7 +242,7 @@
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QDoubleSpinBox" name="DumpMud">
+                 <widget class="QDoubleSpinBox" name="DumpMud1">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -264,7 +264,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="WhiteMud">
+                 <widget class="QDoubleSpinBox" name="WhiteMud1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -277,7 +277,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="CarbonMud">
+                 <widget class="QDoubleSpinBox" name="CarbonMud1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -293,7 +293,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="AluminumHydroxide">
+                 <widget class="QDoubleSpinBox" name="AluminumHydroxide1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -344,7 +344,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Release">
+                 <widget class="QDoubleSpinBox" name="Release1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -371,7 +371,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Extract">
+                 <widget class="QDoubleSpinBox" name="Extract1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -395,7 +395,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Mass">
+                 <widget class="QDoubleSpinBox" name="Mass1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -425,7 +425,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="SiliconModuleDo">
+                 <widget class="QDoubleSpinBox" name="SiliconModuleDo1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -458,7 +458,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="SiliconModulePosle">
+                 <widget class="QDoubleSpinBox" name="SiliconModulePosle1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -488,7 +488,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="CMAlum">
+                 <widget class="QDoubleSpinBox" name="CMAlum1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -515,7 +515,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="CMCarbon">
+                 <widget class="QDoubleSpinBox" name="CMCarbon1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -542,7 +542,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="CMRegen">
+                 <widget class="QDoubleSpinBox" name="CMRegen1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -569,7 +569,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="CMOAlum">
+                 <widget class="QDoubleSpinBox" name="CMOAlum1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -672,13 +672,6 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_26">
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Выпарка&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QLabel" name="label_27">
                   <property name="text">
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Кальцинация&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -690,7 +683,7 @@
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_4">
                 <item>
-                 <widget class="QDoubleSpinBox" name="Crushing">
+                 <widget class="QDoubleSpinBox" name="Crushing1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -703,7 +696,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Grind">
+                 <widget class="QDoubleSpinBox" name="Grind1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -716,7 +709,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Baking">
+                 <widget class="QDoubleSpinBox" name="Baking1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -729,7 +722,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="BakCrushing">
+                 <widget class="QDoubleSpinBox" name="BakCrushing1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -742,7 +735,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="ChemicalLosses">
+                 <widget class="QDoubleSpinBox" name="ChemicalLosses1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -755,7 +748,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Underwashing">
+                 <widget class="QDoubleSpinBox" name="Underwashing1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -768,7 +761,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Desilting">
+                 <widget class="QDoubleSpinBox" name="Desilting1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -781,7 +774,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Carbonation">
+                 <widget class="QDoubleSpinBox" name="Carbonation1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -794,17 +787,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Evaporation">
-                  <property name="maximumSize">
-                   <size>
-                    <width>56</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QDoubleSpinBox" name="Calcination">
+                 <widget class="QDoubleSpinBox" name="Calcination1">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -862,9 +845,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>-439</y>
             <width>450</width>
-            <height>954</height>
+            <height>948</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -883,7 +866,7 @@
               <item row="0" column="2">
                <layout class="QVBoxLayout" name="verticalLayout_13">
                 <item>
-                 <widget class="QDoubleSpinBox" name="ChargeHumidity_2">
+                 <widget class="QDoubleSpinBox" name="ChargeHumidity2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -896,7 +879,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="HumidityWhiteMud_2">
+                 <widget class="QDoubleSpinBox" name="HumidityWhiteMud2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -909,7 +892,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="HumidityAluminumHydroxide_2">
+                 <widget class="QDoubleSpinBox" name="HumidityAluminumHydroxide2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -922,7 +905,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="HumidityDumpMud_2">
+                 <widget class="QDoubleSpinBox" name="HumidityDumpMud2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1033,7 +1016,7 @@
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QDoubleSpinBox" name="DumpMud_2">
+                 <widget class="QDoubleSpinBox" name="DumpMud2">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -1055,7 +1038,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="WhiteMud_2">
+                 <widget class="QDoubleSpinBox" name="WhiteMud2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1068,7 +1051,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="CarbonMud_2">
+                 <widget class="QDoubleSpinBox" name="CarbonMud2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1084,7 +1067,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="AluminumHydroxide_2">
+                 <widget class="QDoubleSpinBox" name="AluminumHydroxide2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1135,7 +1118,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Release_2">
+                 <widget class="QDoubleSpinBox" name="Release2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1162,7 +1145,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Extract_2">
+                 <widget class="QDoubleSpinBox" name="Extract2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1186,7 +1169,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Mass_2">
+                 <widget class="QDoubleSpinBox" name="Mass2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1216,7 +1199,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="SiliconModuleDo_2">
+                 <widget class="QDoubleSpinBox" name="SiliconModuleDo2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1249,7 +1232,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="SiliconModulePosle_2">
+                 <widget class="QDoubleSpinBox" name="SiliconModulePosle2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1279,7 +1262,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="CMAlum_2">
+                 <widget class="QDoubleSpinBox" name="CMAlum2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1306,7 +1289,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="CMCarbon_3">
+                 <widget class="QDoubleSpinBox" name="CMCarbon2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1333,7 +1316,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="CMRegen_2">
+                 <widget class="QDoubleSpinBox" name="CMRegen2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1360,7 +1343,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="CMOAlum_2">
+                 <widget class="QDoubleSpinBox" name="CMOAlum2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1463,13 +1446,6 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_45">
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Выпарка&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QLabel" name="label_46">
                   <property name="text">
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Кальцинация&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1481,7 +1457,7 @@
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_19">
                 <item>
-                 <widget class="QDoubleSpinBox" name="Crushing_2">
+                 <widget class="QDoubleSpinBox" name="Crushing2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1494,7 +1470,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Grind_2">
+                 <widget class="QDoubleSpinBox" name="Grind2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1507,7 +1483,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Baking_2">
+                 <widget class="QDoubleSpinBox" name="Baking2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1520,7 +1496,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="BakCrushing_2">
+                 <widget class="QDoubleSpinBox" name="BakCrushing2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1533,7 +1509,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="ChemicalLosses_2">
+                 <widget class="QDoubleSpinBox" name="ChemicalLosses2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1546,7 +1522,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Underwashing_2">
+                 <widget class="QDoubleSpinBox" name="Underwashing2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1559,7 +1535,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Desilting_2">
+                 <widget class="QDoubleSpinBox" name="Desilting2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1572,7 +1548,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Carbonation_2">
+                 <widget class="QDoubleSpinBox" name="Carbonation2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>
@@ -1585,17 +1561,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="Evaporation_2">
-                  <property name="maximumSize">
-                   <size>
-                    <width>56</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QDoubleSpinBox" name="Calcination_4">
+                 <widget class="QDoubleSpinBox" name="Calcination2">
                   <property name="maximumSize">
                    <size>
                     <width>56</width>

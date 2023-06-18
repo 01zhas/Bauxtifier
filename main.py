@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QDialogButtonBox
 from PyQt5 import QtCore
 from PyQt5.QtCore import QTimer, Qt, QStandardPaths
 from PyQt5.QtGui import QPixmap, QFont
-from View.Settings import Ui_Settings
+from View.Settings2 import Ui_Settings
 from View.StartPage import Ui_Bauxtifier
 from View.StartPageMean import Ui_BauxtifierMean
 from View.BauxOutputClass import BauxOutputWindow
@@ -165,7 +165,7 @@ class NewWindow(QMainWindow):
         self.main_window = main_window
         self.setWindowTitle("Выбор загрузки")
 
-        btn1 = QPushButton("Расчет материальных \n поток основных переделов")
+        btn1 = QPushButton("Расчет материальных \n потоков")
         btn1.clicked.connect(self.load_file)
         btn2 = QPushButton("Сравнительный анализ бокситов")
         btn2.clicked.connect(self.load_two_files)
@@ -1130,16 +1130,16 @@ class SettingsWindow(QDialog, Ui_Settings):
         button_save = self.buttonBox.button(QDialogButtonBox.Save)
         button_save.setText("Сохранить")
         
-        button_discard = self.buttonBox.button(QDialogButtonBox.Discard)
-        button_discard.setText("Отменить")
+        # button_discard = self.buttonBox.button(QDialogButtonBox.Discard)
+        # button_discard.setText("Отменить")
         
-        button_restore_defaults = self.buttonBox.button(QDialogButtonBox.RestoreDefaults)
-        button_restore_defaults.setText("Восстановить по умолчанию")
+        # button_restore_defaults = self.buttonBox.button(QDialogButtonBox.RestoreDefaults)
+        # button_restore_defaults.setText("Восстановить по умолчанию")
 
         # Подключаем слоты к сигналу clicked
         button_save.clicked.connect(self.save_settings)
-        button_discard.clicked.connect(self.discard_changes)
-        button_restore_defaults.clicked.connect(self.restore_defaults)
+        # button_discard.clicked.connect(self.discard_changes)
+        # button_restore_defaults.clicked.connect(self.restore_defaults)
 
     def closeEvent(self, event):
         self.start_page.setEnabled(True)
@@ -1149,14 +1149,14 @@ class SettingsWindow(QDialog, Ui_Settings):
     def save_settings(self):
         self.start_page.setEnabled(True)
 
-    def discard_changes(self):
-        self.start_page.setEnabled(True)
-        self.close()
-        pass
+    # def discard_changes(self):
+    #     self.start_page.setEnabled(True)
+    #     self.close()
+    #     pass
 
-    def restore_defaults(self):
-        # код для восстановления настроек по умолчанию
-        pass
+    # def restore_defaults(self):
+    #     # код для восстановления настроек по умолчанию
+    #     pass
 
 class LoadingDialog(QDialog):
     def __init__(self, parent=None):
