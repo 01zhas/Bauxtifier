@@ -1,7 +1,7 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QDialogButtonBox, QTableWidgetItem, QVBoxLayout, QLabel, QPushButton, QWidget, QFormLayout, QLineEdit, QCheckBox
+from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QDialogButtonBox, QTableWidgetItem, QVBoxLayout, QLabel, QPushButton, QWidget, QFormLayout, QLineEdit, QCheckBox, QMessageBox, QFileDialog
 from PyQt5 import QtCore
-from PyQt5.QtCore import QTimer, Qt
+from PyQt5.QtCore import QTimer, Qt, QStandardPaths
 from PyQt5.QtGui import QPixmap, QFont
 from View.Settings import Ui_Settings
 from View.StartPage import Ui_Bauxtifier
@@ -11,16 +11,13 @@ import openpyxl
 from pycel import ExcelCompiler
 import json
 import pandas as pd
+from decimal import Decimal
+import shutil
+from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QLabel
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
 
 
-# TODO: Мб сделать пару графиков (BarChar с показателями процесса)
-# TODO: Проверка ввода через Excel
-# TODO: Сделать отчетообразователь
-# TODO: Загрузка из файла 
-
-# Забить 
-# TODO: Исправить название таблиц
-# TODO: SiO2 tableAluminateSolutionStageTwo22
 
 class LoginWindow(QMainWindow):
     def __init__(self):
@@ -56,73 +53,178 @@ class LoginWindow(QMainWindow):
             start_page.show()
             self.close()
 
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QCheckBox, QSizePolicy, QHBoxLayout
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
+        self.start_page1_boxite = StartPage1Boxite(self)
+        self.start_page2_boxite = StartPage2Boxite(self)
+        self.start_pageMean_boxite = StartPageMeanBoxite(self)
+        
         self.init_ui()
 
     def init_ui(self):
         self.setWindowTitle("Выбор режима работы")
 
-        btn1 = QPushButton("Анализ одного боксита")
+        btn1 = QPushButton("Расчет материальных \n поток основных переделов ")
         btn1.clicked.connect(self.open_mode1)
-
-        btn2 = QPushButton("Сравнение двух бокситов")
+        btn2 = QPushButton("Сравнительный анализ бокситов")
         btn2.clicked.connect(self.open_mode2)
-
-        btn3 = QPushButton("Усредненый боксит")
+        btn3 = QPushButton("Оценка качества боксита\n по усреднённому составу ")
         btn3.clicked.connect(self.open_mode3)
-
-        logo = QPixmap("Other\\baux.png")  # Укажите путь к изображению логотипа
-        logo_label = QLabel()
-        logo_label.setPixmap(logo)
-
-        description_label = QLabel("Данная программа автоматически рассчитывает массовые балансы на разных стадиях производства глинозема. В ней имеются три режима расчета, но она не учитывает химические и физические свойства материалов и оборудования ")
+        btn4 = QPushButton("Загрузить данные о бокситах в формате Excel")
+        btn4.clicked.connect(self.open_new_window)
+        
+        btn4.setStyleSheet("font:20px;"
+                           "padding : 20px;"
+                           "margin-bottom : 10px;"
+                           "margin-left : 20px;"
+                           "margin-right : 20px;")
+        
+        btn1.setStyleSheet("font:20px;"
+                           "padding : 20px;"
+                           "margin-bottom : 10px;"
+                           "margin-left : 20px;"
+                           "margin-right : 20px;")
+        btn2.setStyleSheet("font:20px;"
+                           "padding : 20px;"
+                           "margin-bottom : 10px;"
+                           "margin-left : 20px;"
+                           "margin-right : 20px;")
+        btn3.setStyleSheet("font:20px;"
+                           "padding : 20px;"
+                           "margin-left : 20px;"
+                           "margin-right : 20px;")
+        
+        description_label = QLabel("Данная программа автоматически рассчитывает массовые балансы на разных стадиях производства глинозема.")
+        description_label.setAlignment(Qt.AlignCenter)
         description_label.setWordWrap(True)
 
-        dark_mode_checkbox = QPushButton("Темный режим")
-        dark_mode_checkbox.setCheckable(True)
+        dark_mode_checkbox = QCheckBox("Темный режим")
         dark_mode_checkbox.toggled.connect(self.toggle_dark_mode)
 
+        dark_mode_layout = QHBoxLayout()
+        dark_mode_layout.addStretch(1)
+        dark_mode_layout.addWidget(dark_mode_checkbox)
+
         layout = QVBoxLayout()
-        layout.addWidget(logo_label)
         layout.addWidget(description_label)
-        layout.addWidget(dark_mode_checkbox)
         layout.addWidget(btn1)
         layout.addWidget(btn2)
         layout.addWidget(btn3)
+        layout.addWidget(btn4)
+        layout.addLayout(dark_mode_layout)
+        layout.setAlignment(Qt.AlignCenter)
+        layout.setSpacing(20)
 
-        container = QWidget()
+        container = QWidget()   
         container.setLayout(layout)
 
         self.setCentralWidget(container)
 
+        font = QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        self.setFont(font)
+
     def open_mode1(self):
-        start_page.show()
-        boxite1window.show()
-        self.close()
+        self.start_page1_boxite.show()
+        self.hide()
 
     def open_mode2(self):
-        start_page.show()
-        boxite2window.show()
-        self.close()
+        self.start_page2_boxite.show()
+        self.hide()
 
     def open_mode3(self):
-        start_page.show()
-        boxiteMeanwindow.show()
-        self.close()
-
+        self.start_pageMean_boxite.show()
+        self.hide()
+        
+    def open_new_window(self):
+        self.new_window = NewWindow(self, self.start_page1_boxite, self.start_page2_boxite)
+        self.new_window.show()
+        self.hide()  
+        
     def toggle_dark_mode(self, checked):
         if checked:
             app.setStyleSheet(qdarkstyle.load_stylesheet(qdarkstyle.DarkPalette))
-            pass
         else:
             app.setStyleSheet(qdarkstyle.load_stylesheet(qdarkstyle.LightPalette))
-            pass
+
+class NewWindow(QMainWindow):
+
+    def __init__(self, main_window, start_page1_boxite, start_page2_boxite):
+        super().__init__()
+
+        self.start_page1_boxite = start_page1_boxite
+        self.start_page2_boxite = start_page2_boxite
+        
+        self.main_window = main_window
+        self.setWindowTitle("Выбор загрузки")
+
+        btn1 = QPushButton("Расчет материальных \n поток основных переделов")
+        btn1.clicked.connect(self.load_file)
+        btn2 = QPushButton("Сравнительный анализ бокситов")
+        btn2.clicked.connect(self.load_two_files)
+
+        btn1.setStyleSheet("font:20px;"
+                           "padding : 20px;"
+                           "margin-bottom : 10px;"
+                           "margin-left : 20px;"
+                           "margin-right : 20px;")
+        btn2.setStyleSheet("font:20px;"
+                           "padding : 20px;"
+                           "margin-bottom : 10px;"
+                           "margin-left : 20px;"
+                           "margin-right : 20px;")
+
+        layout = QVBoxLayout()
+        layout.addWidget(btn1)
+        layout.addWidget(btn2)
+        layout.setAlignment(Qt.AlignCenter)
+        layout.setSpacing(20)
+
+        container = QWidget()   
+        container.setLayout(layout)
+
+        self.setCentralWidget(container)
+
+        font = QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        self.setFont(font)
+        
+    def closeEvent(self, event):
+        self.main_window.show()  # Show the MainWindow when NewWindow closes
+        event.accept()
+
+    def load_file(self):
+        initial_dir = QStandardPaths.writableLocation(QStandardPaths.DocumentsLocation)
+        target_file_name, _ = QFileDialog.getOpenFileName(self, "Open File", initial_dir + "/")
+
+        if target_file_name:
+            destination = "Excels\Производство глинозема1.xlsx"
+            shutil.copy(target_file_name, destination)
+            
+        self.start_page1_boxite.open_baux_output()
+
+    def load_two_files(self):
+        for i in range(2):
+            initial_dir = QStandardPaths.writableLocation(QStandardPaths.DocumentsLocation)
+            target_file_name, _ = QFileDialog.getOpenFileName(self, "Open File", initial_dir + "/")
+
+            if target_file_name:
+                destination = f"Excels\Производство глинозема{i+1}.xlsx"
+                shutil.copy(target_file_name, destination)
+                
+        self.start_page2_boxite.open_baux_output()
 
 class StartPage1Boxite(QMainWindow, Ui_Bauxtifier):
-    def __init__(self):
+    def __init__(self, previos):
+        self.previos = previos
         super().__init__()
         self.current_file_name = None
         self.compiler = None
@@ -131,9 +233,114 @@ class StartPage1Boxite(QMainWindow, Ui_Bauxtifier):
         self.tabWidget.setTabVisible(1, False)
         self.settings_window = SettingsWindow(self)
         self.statusBar().setVisible(False)
-
+        
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), "Состав боксита")
+        self.label.setText("Введите состав боксита")
+        self.settings_window.tabWidget.setTabText(self.tabWidget.indexOf(self.settings_window.tab), "Исходные данные")
+        
         self.settingButton.clicked.connect(self.open_settings)
         self.runButton.clicked.connect(self.open_baux_output)
+
+    def check(self):
+        with open("./JSON/data.json", "r") as file:
+            data = json.load(file)
+
+        for i in ["1", "2"]:
+            for key, value in data.items():
+                attr_name = key + i
+
+                attr_value = getattr(self, attr_name, None)
+
+                if attr_value is None:
+                    attr_value = getattr(self.settings_window, attr_name, None)
+
+                if attr_value is not None:
+                    val = attr_value.text().replace(",", ".")
+                    if float(val) < 0:
+                        # Неправильный ввод: отрицательные значение в данных
+                        QMessageBox.warning(self, "Ошибка ввода", "Неправильный ввод: отрицательные значение в данных")
+                        return False
+                else:
+                    print(f"Атрибут '{attr_name}' не найден ни в self, ни в self.settings_window")
+
+        return True
+    
+    def closeEvent(self, event):
+        self.previos.show()  # Show the MainWindow when NewWindow closes
+        event.accept()
+        
+    def check2(self):
+        with open("./JSON/data.json", "r") as file:
+            data = json.load(file)
+
+        bauxite_elements = [
+            "al2o3_in_bauxite",
+            "fe2o3_in_bauxite",
+            "sio2_in_bauxite",
+            "tio2_in_bauxite",
+            "cao_in_bauxite",
+            "co2_in_bauxite",
+            "other_elements_in_bauxite",
+            "trace_elements_in_bauxite"
+        ]
+
+        soda_elements = [
+            "soda_moisture",
+            "na2co3_in_soda",
+            "soda_other_elements"
+        ]
+
+        white_sludge_elements = [
+            "co2_in_white_sludge",
+            "na2o_in_white_sludge",
+            "sio2_in_white_sludge",
+            "trace_elements_in_white_sludge",
+            "al2o3_in_white_sludge",
+            "fe2o3_in_white_sludge",
+            "cao_in_white_sludge"
+        ]
+
+        limestone_elements = [
+            "limestone_co2",
+            "limestone_sio2",
+            "limestone_other_elements",
+            "limestone_cao"
+        ]
+
+        for i in ["1", "2"]:
+            lst = [Decimal(getattr(self, element + i, "0")
+                           .text().replace(",", ".")) 
+                   for element in bauxite_elements]
+            bauxite_sum = sum(lst)
+            soda_sum = sum(Decimal(getattr(self, element + i, "0")
+                                   .text().replace(",", "."))
+                           for element in soda_elements)
+            white_sludge_sum = sum(
+                Decimal(getattr(self, element + i, "0")
+                        .text().replace(",", ".")) 
+                for element in white_sludge_elements)
+            limestone_sum = sum(
+                Decimal(getattr(self, element + i, "0").text()
+                        .replace(",", ".")) 
+                for element in limestone_elements)
+            if bauxite_sum != 100:
+                QMessageBox.warning(self, "Ошибка ввода", 
+                f"Сумма элементов во вкладке Боксит {i} не равна 100%")
+                return False
+            if soda_sum != 100:
+                QMessageBox.warning(self, "Ошибка ввода", 
+                f"Сумма элементов во вкладке Сода {i} не равна 100%")
+                return False
+            if white_sludge_sum != 100:
+                QMessageBox.warning(self, "Ошибка ввода", 
+                f"Сумма элементов во вкладке Белый шлам {i} не равна 100%")
+                return False
+            if limestone_sum != 100:
+                QMessageBox.warning(self, "Ошибка ввода", 
+                f"Сумма элементов во вкладке Известняк {i} не равна 100%")
+                return False
+
+        return True
 
     def open_settings(self):
         self.settings_window.tabWidget.setTabVisible(1, False)
@@ -141,28 +348,20 @@ class StartPage1Boxite(QMainWindow, Ui_Bauxtifier):
         self.setDisabled(True)
 
     def open_baux_output(self):
-        self.baux_output_window = BauxOutputWindow(self)
-        
-        # Устанавливаем активную вкладку (индекс начинается с 0)
-        self.baux_output_window.tabWidget_6.setCurrentIndex(0)
-        
-        # Устанавливаем активную вкладку (индекс начинается с 0)
-        self.baux_output_window.tabWidget.setCurrentIndex(0)
+        if self.check() and self.check2():
+            self.baux_output_window = BauxOutputWindow(self)
+            self.baux_output_window.tabWidget_6.setCurrentIndex(0)
+            self.baux_output_window.tabWidget.setCurrentIndex(0)
+            self.Calculate()
+            self.baux_output_window.add_histogram_tab1()
+            self.baux_output_window.tabWidget_5.setTabVisible(1, False)
+            # self.baux_output_window.tabWidget_5.setTabVisible(2, False)
+            self.baux_output_window.show()
+            self.hide()
 
-        # loading_dialog = LoadingDialog(self)
-        # loading_dialog.show()
-
-        self.Calculate()
-        self.baux_output_window.tabWidget_5.setTabVisible(1, False)
-        # loading_dialog.close()
-        self.baux_output_window.show()
-        # self.baux_output_window.on_run_button_clicked()
-        # self.baux_output_window.show()
-        self.close()
-        
     def table(self, num):
         # Чтение данных из JSON-файла
-        with open('JSON\\table.json', 'r', encoding="utf8") as file:
+        with open('./JSON/table.json', 'r', encoding="utf8") as file:
             table_data = json.load(file)
 
         # Получение данных для таблицы 13
@@ -190,6 +389,7 @@ class StartPage1Boxite(QMainWindow, Ui_Bauxtifier):
             if num != 1:
                 add = f"_{num}"
             for ser, qttab in tab["rows"].items():
+                
                 self.copy_series_to_qtablewidget(
                     df.loc[ser],
                     getattr(self.baux_output_window, qttab+add)
@@ -225,13 +425,13 @@ class StartPage1Boxite(QMainWindow, Ui_Bauxtifier):
         
     def set_data_worksheet(self):
         # Открываем рабочую книгу
-        workbook = openpyxl.load_workbook('Excels\\Производство глинозема.xlsx')
+        workbook = openpyxl.load_workbook('Excels/Производство глинозема.xlsx')
 
         # Выбираем активный лист
         worksheet = workbook["Исходные данные"]
         
         
-        with open("JSON\\data.json", "r") as file:
+        with open("./JSON/data.json", "r") as file:
             data = json.load(file)
 
         for i in ["1"]:
@@ -248,7 +448,10 @@ class StartPage1Boxite(QMainWindow, Ui_Bauxtifier):
                 if attr_value is not None:
                     val = attr_value.text().replace(",", ".")
                     # Запись значения атрибута в ячейку листа
-                    worksheet[value] = float(val)
+                    if float(val) >= 0:
+                        worksheet[value] = float(val)
+                    else:
+                        print(f"Значение атрибута '{attr_name}' не может быть отрицательным")
                 else:
                     print(f"Атрибут '{attr_name}' не найден ни в self, ни в self.settings_window")
 
@@ -317,7 +520,100 @@ class StartPage1Boxite(QMainWindow, Ui_Bauxtifier):
         return self.compiler.evaluate(f'{sheet_name}!{col_letter}{row}')
 
 class StartPage2Boxite(QMainWindow, Ui_Bauxtifier):
-    def __init__(self):
+        
+    def check(self):
+        with open("./JSON/data.json", "r") as file:
+            data = json.load(file)
+
+        for i in ["1", "2"]:
+            for key, value in data.items():
+                attr_name = key + i
+
+                attr_value = getattr(self, attr_name, None)
+
+                if attr_value is None:
+                    attr_value = getattr(self.settings_window, attr_name, None)
+
+                if attr_value is not None:
+                    val = attr_value.text().replace(",", ".")
+                    if float(val) < 0:
+                        # Неправильный ввод: отрицательные значение в данных
+                        QMessageBox.warning(self, "Ошибка ввода", "Неправильный ввод: отрицательные значение в данных")
+                        return False
+                else:
+                    print(f"Атрибут '{attr_name}' не найден ни в self, ни в self.settings_window")
+        return True
+    
+    def closeEvent(self, event):
+        self.previos.show()  # Show the MainWindow when NewWindow closes
+        event.accept()
+    
+    def check2(self):
+        with open("./JSON/data.json", "r") as file:
+            data = json.load(file)
+
+        bauxite_elements = [
+            "al2o3_in_bauxite",
+            "fe2o3_in_bauxite",
+            "sio2_in_bauxite",
+            "tio2_in_bauxite",
+            "cao_in_bauxite",
+            "co2_in_bauxite",
+            "other_elements_in_bauxite",
+            "trace_elements_in_bauxite"
+        ]
+
+        soda_elements = [
+            "soda_moisture",
+            "na2co3_in_soda",
+            "soda_other_elements"
+        ]
+
+        white_sludge_elements = [
+            "co2_in_white_sludge",
+            "na2o_in_white_sludge",
+            "sio2_in_white_sludge",
+            "trace_elements_in_white_sludge",
+            "al2o3_in_white_sludge",
+            "fe2o3_in_white_sludge",
+            "cao_in_white_sludge"
+        ]
+
+        limestone_elements = [
+            "limestone_co2",
+            "limestone_sio2",
+            "limestone_other_elements",
+            "limestone_cao"
+        ]
+
+        for i in ["1", "2"]:
+            bauxite_sum = sum(
+                Decimal(getattr(self, element + i, "0").text().replace(",", ".")) for element in bauxite_elements)
+            soda_sum = sum(Decimal(getattr(self, element + i, "0").text().replace(",", ".")) for element in soda_elements)
+            white_sludge_sum = sum(
+                Decimal(getattr(self, element + i, "0").text().replace(",", ".")) for element in white_sludge_elements)
+            limestone_sum = sum(
+                Decimal(getattr(self, element + i, "0").text().replace(",", ".")) for element in limestone_elements)
+
+            if bauxite_sum != 100:
+                QMessageBox.warning(self, "Ошибка ввода", f"Сумма элементов во вкладке Боксит {i} не равна 100%")
+                return False
+
+            if soda_sum != 100:
+                QMessageBox.warning(self, "Ошибка ввода", f"Сумма элементов во вкладке Сода {i} не равна 100%")
+                return False
+
+            if white_sludge_sum != 100:
+                QMessageBox.warning(self, "Ошибка ввода", f"Сумма элементов во вкладке Белый шлам {i} не равна 100%")
+                return False
+
+            if limestone_sum != 100:
+                QMessageBox.warning(self, "Ошибка ввода", f"Сумма элементов во вкладке Известняк {i} не равна 100%")
+                return False
+
+        return True
+
+    def __init__(self, previos):
         super().__init__()
         self.current_file_name = None
         self.compiler = None
@@ -328,38 +624,50 @@ class StartPage2Boxite(QMainWindow, Ui_Bauxtifier):
         self.settingButton.clicked.connect(self.open_settings)
         self.runButton.clicked.connect(self.open_baux_output)
 
+    def check(self):
+        with open("./JSON/data.json", "r") as file:
+            data = json.load(file)
+
+        for i in ["1", "2"]:
+            for key, value in data.items():
+                attr_name = key + i
+
+                attr_value = getattr(self, attr_name, None)
+
+                if attr_value is None:
+                    attr_value = getattr(self.settings_window, attr_name, None)
+
+                if attr_value is not None:
+                    val = attr_value.text().replace(",", ".")
+                    if float(val) < 0:
+                        # Неправильный ввод: отрицательные значение в данных
+                        QMessageBox.warning(self, "Ошибка ввода", "Неправильный ввод: отрицательные значение в данных")
+                        return False
+                else:
+                    print(f"Атрибут '{attr_name}' не найден ни в self, ни в self.settings_window")
+
+        return True
     def open_settings(self):
         self.settings_window.show()
         self.setDisabled(True)
 
     def open_baux_output(self):
-        self.baux_output_window = BauxOutputWindow(self)
-        
-        # Устанавливаем активную вкладку (индекс начинается с 0)
-        self.baux_output_window.tabWidget_6.setCurrentIndex(0)
-        
-        # Устанавливаем активную вкладку (индекс начинается с 0)
-        self.baux_output_window.tabWidget.setCurrentIndex(0)
+        if self.check() and self.check2():
+            self.baux_output_window = BauxOutputWindow(self)
+            self.baux_output_window.tabWidget_6.setCurrentIndex(0)
+            self.baux_output_window.tabWidget.setCurrentIndex(0)
+            self.Calculate()
+            self.baux_output_window.add_histogram_tab2()
+            self.baux_output_window.show()
+            self.hide()
 
-        # loading_dialog = LoadingDialog(self)
-        # loading_dialog.show()
-
-        self.Calculate()
-
-        # loading_dialog.close()
-        self.baux_output_window.show()
-        # self.baux_output_window.on_run_button_clicked()
-        # self.baux_output_window.show()
-        self.close()
-        
     def table(self, num):
-        # Чтение данных из JSON-файла
-        with open('JSON\\table.json', 'r', encoding="utf8") as file:
+        with open('./JSON/table.json', 'r', encoding="utf8") as file:
             table_data = json.load(file)
 
         # Получение данных для таблицы 13
         for i, tab in table_data.items():
-        # Считывание таблицы с помощью функции read_table_from_worksheet()
+            # Считывание таблицы с помощью функции read_table_from_worksheet()
             df = self.read_table_from_worksheet(
                 f"Excels\\Производство глинозема{num}.xlsx",
                 "Таблицы",
@@ -367,7 +675,7 @@ class StartPage2Boxite(QMainWindow, Ui_Bauxtifier):
                 int(tab["num_rows"]),
                 int(tab["num_cols"])
             )
-            
+
             overall = self.read_overall_from_worksheet(
                 f"Excels\\Производство глинозема{num}.xlsx",
                 "Таблицы",
@@ -384,9 +692,9 @@ class StartPage2Boxite(QMainWindow, Ui_Bauxtifier):
             for ser, qttab in tab["rows"].items():
                 self.copy_series_to_qtablewidget(
                     df.loc[ser],
-                    getattr(self.baux_output_window, qttab+add)
+                    getattr(self.baux_output_window, qttab + add)
                 )
-            
+
             tab25 = self.read_table_from_worksheet(
                 f"Excels\\Производство глинозема{num}.xlsx",
                 "Таблицы",
@@ -395,12 +703,15 @@ class StartPage2Boxite(QMainWindow, Ui_Bauxtifier):
                 5
             )
             self.table25(
-                    tab25,
-                    getattr(self.baux_output_window, "tableAlkalineSolution25"+add)
+                tab25,
+                getattr(self.baux_output_window, "tableAlkalineSolution25" + add)
             )
-            getattr(self.baux_output_window, "Get"+i+add).setText(f"Всего: {round(overall,2)} кг")
-            getattr(self.baux_output_window, "Set"+i+add).setText(f"Всего: {round(overall,2)} кг")
-                
+
+            getattr(self.baux_output_window, "Get" + i + add).setText(f"Всего: {round(overall, 2)} кг")
+            # TODO "Set"+i+add переменная для получения всего
+            getattr(self.baux_output_window, "Set" + i + add).setText(f"Всего: {round(overall, 2)} кг")
+
+            
     def table25(self, series, table_widget):
 
         for i in range(series.shape[0]):
@@ -417,13 +728,13 @@ class StartPage2Boxite(QMainWindow, Ui_Bauxtifier):
         
     def set_data_worksheet(self):
         # Открываем рабочую книгу
-        workbook = openpyxl.load_workbook('Excels\\Производство глинозема.xlsx')
+        workbook = openpyxl.load_workbook('Excels/Производство глинозема.xlsx')
 
         # Выбираем активный лист
         worksheet = workbook["Исходные данные"]
         
         
-        with open("JSON\\data.json", "r") as file:
+        with open("./JSON/data.json", "r") as file:
             data = json.load(file)
 
         for i in ["1", "2"]:
@@ -509,16 +820,112 @@ class StartPage2Boxite(QMainWindow, Ui_Bauxtifier):
         return self.compiler.evaluate(f'{sheet_name}!{col_letter}{row}')
 
 class StartPageMeanBoxite(QMainWindow, Ui_BauxtifierMean):
-    def __init__(self):
+    def __init__(self, previos):
+        self.previos = previos
         super().__init__()
         self.current_file_name = None
         self.compiler = None
         self.setupUi(self)
         self.settings_window = SettingsWindow(self)
 
+        self.settings_window.tabWidget.setTabText(self.settings_window.tabWidget.indexOf(self.settings_window.tab), "Исходные данные")
+        
         self.settingButton.clicked.connect(self.open_settings)
         self.runButton.clicked.connect(self.open_baux_output)
 
+    def closeEvent(self, event):
+        self.previos.show()  # Show the MainWindow when NewWindow closes
+        event.accept()
+    
+    def check(self):
+        with open("./JSON/data.json", "r") as file:
+            data = json.load(file)
+
+        for i in ["1"]:
+            for key, value in data.items():
+                attr_name = key + i
+
+                attr_value = getattr(self, attr_name, None)
+
+                if attr_value is None:
+                    attr_value = getattr(self.settings_window, attr_name, None)
+
+                if attr_value is not None:
+                    val = attr_value.text().replace(",", ".")
+                    if float(val) < 0:
+                        # Неправильный ввод: отрицательные значение в данных
+                        QMessageBox.warning(self, "Ошибка ввода", "Неправильный ввод: отрицательные значение в данных")
+                        return False
+                else:
+                    print(f"Атрибут '{attr_name}' не найден ни в self, ни в self.settings_window")
+
+        return True
+    
+    def check2(self):
+        with open("./JSON/data.json", "r") as file:
+            data = json.load(file)
+
+        bauxite_elements = [
+            "al2o3_in_bauxite",
+            "fe2o3_in_bauxite",
+            "sio2_in_bauxite",
+            "tio2_in_bauxite",
+            "cao_in_bauxite",
+            "co2_in_bauxite",
+            "other_elements_in_bauxite",
+            "trace_elements_in_bauxite"
+        ]
+
+        soda_elements = [
+            "soda_moisture",
+            "na2co3_in_soda",
+            "soda_other_elements"
+        ]
+
+        white_sludge_elements = [
+            "co2_in_white_sludge",
+            "na2o_in_white_sludge",
+            "sio2_in_white_sludge",
+            "trace_elements_in_white_sludge",
+            "al2o3_in_white_sludge",
+            "fe2o3_in_white_sludge",
+            "cao_in_white_sludge"
+        ]
+
+        limestone_elements = [
+            "limestone_co2",
+            "limestone_sio2",
+            "limestone_other_elements",
+            "limestone_cao"
+        ]
+
+        for i in ["1"]:
+            bauxite_sum = sum(
+                Decimal(getattr(self, element + i, "0").text().replace(",", ".")) for element in bauxite_elements)
+            soda_sum = sum(Decimal(getattr(self, element + i, "0").text().replace(",", ".")) for element in soda_elements)
+            white_sludge_sum = sum(
+                Decimal(getattr(self, element + i, "0").text().replace(",", ".")) for element in white_sludge_elements)
+            limestone_sum = sum(
+                Decimal(getattr(self, element + i, "0").text().replace(",", ".")) for element in limestone_elements)
+
+            if bauxite_sum != 100:
+                QMessageBox.warning(self, "Ошибка ввода", f"Сумма элементов во вкладке Боксит {i} не равна 100%")
+                return False
+
+            if soda_sum != 100:
+                QMessageBox.warning(self, "Ошибка ввода", f"Сумма элементов во вкладке Сода {i} не равна 100%")
+                return False
+
+            if white_sludge_sum != 100:
+                QMessageBox.warning(self, "Ошибка ввода", f"Сумма элементов во вкладке Белый шлам {i} не равна 100%")
+                return False
+
+            if limestone_sum != 100:
+                QMessageBox.warning(self, "Ошибка ввода", f"Сумма элементов во вкладке Известняк {i} не равна 100%")
+                return False
+
+        return True
+    
     def open_settings(self):
         self.setDisabled(True)
         self.settings_window.tabWidget.setTabVisible(1, False)
@@ -526,32 +933,24 @@ class StartPageMeanBoxite(QMainWindow, Ui_BauxtifierMean):
 
 
     def open_baux_output(self):
-        self.baux_output_window = BauxOutputWindow(self)
-        
-        # Устанавливаем активную вкладку (индекс начинается с 0)
-        self.baux_output_window.tabWidget_6.setCurrentIndex(0)
-        
-        # Устанавливаем активную вкладку (индекс начинается с 0)
-        self.baux_output_window.tabWidget.setCurrentIndex(0)
-
-        # loading_dialog = LoadingDialog(self)
-        # loading_dialog.show()
-
-        self.Calculate()
-        self.baux_output_window.tabWidget_5.setTabVisible(1, False)
-        # loading_dialog.close()
-        self.baux_output_window.show()
-        # self.baux_output_window.on_run_button_clicked()
-        # self.baux_output_window.show()
-        self.close()
+        if self.check() and self.check2():
+            self.baux_output_window = BauxOutputWindow(self)
+            self.baux_output_window.tabWidget_6.setCurrentIndex(0)
+            self.baux_output_window.tabWidget.setCurrentIndex(0)
+            self.Calculate()
+            self.baux_output_window.add_histogram_tab1()
+            self.baux_output_window.tabWidget_5.setTabVisible(1, False)
+            self.baux_output_window.show()
+            self.hide()
         
     def table(self, num):
         # Чтение данных из JSON-файла
-        with open('JSON\\table.json', 'r', encoding="utf8") as file:
+        with open('./JSON/table.json', 'r', encoding="utf8") as file:
             table_data = json.load(file)
 
         # Получение данных для таблицы 13
         for i, tab in table_data.items():
+            
         # Считывание таблицы с помощью функции read_table_from_worksheet()
             df = self.read_table_from_worksheet(
                 f"Excels\\Производство глинозема{num}.xlsx",
@@ -609,13 +1008,13 @@ class StartPageMeanBoxite(QMainWindow, Ui_BauxtifierMean):
         
     def set_data_worksheet(self):
         # Открываем рабочую книгу
-        workbook = openpyxl.load_workbook('Excels\\Производство глинозема.xlsx')
+        workbook = openpyxl.load_workbook('Excels/Производство глинозема.xlsx')
 
         # Выбираем активный лист
         worksheet = workbook["Исходные данные"]
         
         
-        with open("JSON\\data.json", "r") as file:
+        with open("./JSON/data.json", "r") as file:
             data = json.load(file)
 
         for key, value in data.items():
@@ -637,7 +1036,6 @@ class StartPageMeanBoxite(QMainWindow, Ui_BauxtifierMean):
             else:
                 attr_name1 = key + "1"
                 attr_value1 = getattr(self, attr_name1, None)
-                print(attr_name1)
                 if attr_value1 is None:
                     attr_valueMean = getattr(self.settings_window, attr_name1, None)
                 else:
@@ -661,7 +1059,6 @@ class StartPageMeanBoxite(QMainWindow, Ui_BauxtifierMean):
         workbook.save(f'Excels\\Производство глинозема1.xlsx')
         workbook.close()
 
-        
     def copy_series_to_qtablewidget(self, series, table_widget):
         series = series.loc[series != 0].copy()
         if table_widget.rowCount() != 1:
@@ -791,12 +1188,9 @@ import qdarkstyle
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     font = QFont()
-    font.setPointSize(10)
+    font.setPointSize(11)
     app.setFont(font)
     app.setStyleSheet(qdarkstyle.load_stylesheet(qdarkstyle.LightPalette))
-    boxite1window = StartPage1Boxite()
-    boxite2window = StartPage2Boxite()
-    boxiteMeanwindow = StartPageMeanBoxite()
     login_window = LoginWindow()
     start_page = MainWindow()
     login_window.show()

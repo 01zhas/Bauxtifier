@@ -13723,6 +13723,7 @@ class Ui_AlumiaWindow(object):
         self.action_new.setShortcut(_translate("AlumiaWindow", "Ctrl+N"))
         self.statusBar().setVisible(False)
 
+        
 
 if __name__ == "__main__":
     import sys
@@ -13732,4 +13733,3 @@ if __name__ == "__main__":
     ui.setupUi(AlumiaWindow)
     AlumiaWindow.show()
     sys.exit(app.exec_())
-

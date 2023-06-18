@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>462</height>
+    <width>557</width>
+    <height>577</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,13 +25,6 @@
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
-   <item>
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>В данном окне Вы можете настройть параметры процессов каждого из бокситов</string>
-     </property>
-    </widget>
-   </item>
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="sizePolicy">
@@ -78,8 +71,8 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-384</y>
-            <width>557</width>
+            <y>0</y>
+            <width>514</width>
             <height>745</height>
            </rect>
           </property>
@@ -714,8 +707,8 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-384</y>
-            <width>557</width>
+            <y>-245</y>
+            <width>514</width>
             <height>745</height>
            </rect>
           </property>
@@ -997,7 +990,7 @@
                 <item>
                  <widget class="QLabel" name="label_4">
                   <property name="text">
-                   <string>Кремниевый модуль алюминатного раствора</string>
+                   <string>Каустический модуль модуль алюминатного раствора</string>
                   </property>
                   <property name="wordWrap">
                    <bool>true</bool>
@@ -1318,12 +1311,19 @@
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>В данном окне Вы можете настройть параметры процессов каждого из бокситов</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Discard|QDialogButtonBox::RestoreDefaults|QDialogButtonBox::Save</set>
+      <set>QDialogButtonBox::Save</set>
      </property>
      <property name="centerButtons">
       <bool>false</bool>

@@ -571,7 +571,7 @@ class Ui_Settings(object):
     def retranslateUi(self, Settings):
         _translate = QtCore.QCoreApplication.translate
         Settings.setWindowTitle(_translate("Settings", "Настройки"))
-        self.label_5.setText(_translate("Settings", "В данном окне Вы можете настройть параметры процессов каждого из бокситов"))
+        self.label_5.setText(_translate("Settings", "В данном окне Вы можете настройть параметры процессов"))
         self.groupBox.setTitle(_translate("Settings", "Влажность, %"))
         self.label2.setText(_translate("Settings", "Влажность шихты, поступающей на спекание"))
         self.label_7.setText(_translate("Settings", "Влажность белого шлама"))
@@ -598,7 +598,7 @@ class Ui_Settings(object):
         self.label_25.setText(_translate("Settings", "<html><head/><body><p>Карбонизация</p></body></html>"))
         # self.label_26.setText(_translate("Settings", "<html><head/><body><p>Выпарка</p></body></html>"))
         self.label_27.setText(_translate("Settings", "<html><head/><body><p>Кальцинация</p></body></html>"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Settings", "Первая шихта"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Settings", "Первый боксит"))
         self.groupBox2.setTitle(_translate("Settings", "Влажность, %"))
         self.label_3.setText(_translate("Settings", "Влажность шихты, поступающей на спекание"))
         self.label_20.setText(_translate("Settings", "Влажность белого шлама"))
@@ -625,7 +625,7 @@ class Ui_Settings(object):
         self.label_44.setText(_translate("Settings", "<html><head/><body><p>Карбонизация</p></body></html>"))
         # self.label_45.setText(_translate("Settings", "<html><head/><body><p>Выпарка</p></body></html>"))
         self.label_46.setText(_translate("Settings", "<html><head/><body><p>Кальцинация</p></body></html>"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab2), _translate("Settings", "Вторая шихта"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab2), _translate("Settings", "Второй боксит"))
 
 
 if __name__ == "__main__":
